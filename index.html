@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+      <script type="module" src="script.js" defer></script>
+    <link rel="stylesheet" href="./css/normalize.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <header>
+      <h1 id="siteTitle" class="siteTitle">filmsFormToTableCards.com</h1>
+    </header>
+    <main>
+      <section class="form-section">
+        <h2>Add new films</h2>
+        <form id="films-form" class="films-form">
+          <label for="title">Title</label>
+          <input
+            type="text"
+            id="title"
+            name="title"
+            placeholder="Introduce a title"
+            required
+          />
+
+          <label for="year">Year</label>
+          <input
+            type="number"
+            id="year"
+            name="year"
+            min="1888"
+            max="2026"
+            placeholder="Introduce a year"
+            required
+          />
+
+          <label for="plot">Plot summary</label>
+          <input
+            type="text"
+            id="plot"
+            name="plot"
+            placeholder="Introduce the plot of the film"
+            required
+          />
+
+          <label for="poster">Poster</label>
+          <input
+            type="url"
+            id="poster"
+            name="poster"
+            pattern="https?://.*"
+            title="The URL must start with http:// or https:// and end with a valid image format (jpg, png, webp, gif)"
+            placeholder="Introduce an image url"
+            required
+          />
+
+          <label for="genre">Genre</label>
+          <select
+            id="genre"
+            name="genre"
+            placeholder="Select film genre"
+            required
+          >
+            <option value="" disabled selected>Select genre</option>
+            <option value="action">Action</option>
+            <option value="adventure">Adventure</option>
+            <option value="comedy">Comedy</option>
+            <option value="drama">Drama</option>
+            <option value="fantasy">Fantasy</option>
+            <option value="horror">Horror</option>
+            <option value="mystery">Mystery</option>
+            <option value="romance">Romance</option>
+            <option value="sci-fi">Sci-Fi</option>
+            <option value="thriller">Thriller</option>
+          </select>
+
+          <button type="submit">Save Film</button>
+        </form>
+      </section>
+
+      <section>
+        <label for="genre-filter">Filter by genre</label>
+        <select id="genre-filter">
+          <option value="all">All</option>
+          <option value="action">Action</option>
+          <option value="adventure">Adventure</option>
+          <option value="comedy">Comedy</option>
+          <option value="drama">Drama</option>
+          <option value="fantasy">Fantasy</option>
+          <option value="horror">Horror</option>
+          <option value="mystery">Mystery</option>
+          <option value="romance">Romance</option>
+          <option value="sci-fi">Sci-Fi</option>
+          <option value="thriller">Thriller</option>
+        </select>
+
+        <label for="live-filter">Live filter</label>
+        <input
+          type="text"
+          id="live-filter"
+          name="live-filter"
+          placeholder="Search for a film"
+        />
+
+        <table id="films-table" class="films-table">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Year</th>
+              <th>Plot summary</th>
+              <th>Genre</th>
+              <th>Poster</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="films-list">
+          </tbody>
+        </table>
+      </section>
+    </main>
+  </body>
+</html>

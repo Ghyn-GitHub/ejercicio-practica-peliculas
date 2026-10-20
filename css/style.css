@@ -1,0 +1,302 @@
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Lato', sans-serif;
+    font-size: 16px;
+}
+
+body {
+   display: flex;
+   flex-direction: column;
+   min-height: 100vh; /* Obliga al body a medir toda la pantalla para que el footer pueda bajar */
+   margin: 0;
+   background-color: #f4f4f4;
+}
+
+header {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    color: #fff;
+    z-index: 1000;
+}
+
+#siteTitle {
+    text-align: center;
+    font-size: clamp(1.8rem, 4vw, 3rem);
+}
+
+section {
+    padding: 20px;
+}
+
+.form-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+input, select {
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+button {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #555;
+}
+
+/* Vista tarjetas */
+
+.films-table {
+    width: 100%;
+    display: block; /* Rompe la estructura de la tabla */
+    box-sizing: border-box;
+}
+
+.films-table thead {
+    display: none;
+}
+
+.films-table tbody {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+
+.films-table tr {
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 4px -1px rgba(0, 0, 0, 0.1);
+}
+
+.films-table td {
+    display: flex;
+    padding: 6px 0;
+    font-family: sans-serif;
+    color: #334155;
+    font-size: 0.95rem;
+}
+
+.films-table td:not(.cell-poster):not(.cell-edits):not(.edit-form-cell)::before {
+    content: attr(data-label);
+    font-weight: bold;
+    color: #64748b;
+    width: 120px; /* Alinea los textos de las etiquetas */
+    flex-shrink: 0;
+}
+
+/* Reordenación tarjetas */
+
+.films-table .cell-poster {
+    order: 1;
+    justify-content: center;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #f1f5f9;
+    margin-bottom: 12px;
+}
+
+.films-table .cell-poster img {
+    display: block;
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    max-height: 300px;
+    object-fit: contain;
+}
+
+.films-table .cell-title {
+    order: 2;
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #0f172a;
+}
+
+.films-table .cell-year {
+    order: 3;
+}
+
+.films-table .cell-genre {
+    order:4;
+}
+
+.films-table .cell-plot {
+    order: 5;
+    flex-direction: column; /* La descripción larga cae hacia abajo de la tarjeta */
+    gap: 4px;
+    margin-top: 6px;
+}
+
+.films-table .cell-edits {
+    order: 6;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+button.edit-btn,
+button.delete-btn {
+    margin: 0;
+}
+
+button.delete-btn {
+    background-color: #e74c3c;
+    color: #fff;
+}
+
+button.delete-btn:hover {
+    background-color: #c0392b;
+}
+
+@media (min-width: 768px) {
+    .films-form {
+        max-width: 80%;
+    }
+
+    /* 1. Restaurar el formato normal de tabla */
+    .films-table {
+        display: table;
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        background-color: #fff;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .films-table thead {
+        display: table-header-group;
+        background-color: #333;
+        color: #fff;
+    }
+
+    .films-table tbody {
+        display: table-row-group;
+    }
+
+    .films-table tr {
+        display: table-row;
+        background-color: transparent;
+        border: none;
+        border-radius: 0;
+        padding: 0;
+        box-shadow: none;
+    }
+
+    /* 2. Estilo de las celdas */
+    .films-table th,
+    .films-table td {
+        display: table-cell;
+        padding: 14px 12px;
+        text-align: left;
+        vertical-align: middle;
+    }
+
+    .films-table th {
+        padding: 16px 12px;
+        font-weight: 700;
+        white-space: nowrap;
+    }
+
+    .films-table td {
+        border-bottom: 1px solid #e2e8f0;
+        color: #334155;
+    }
+
+    /* 3. Ocultar las etiquetas de las tarjetas móviles */
+    .films-table td:not(.cell-poster)::before {
+        content: none;
+        display: none;
+    }
+
+    /* 4. Dar formato a las filas */
+    .films-table tbody tr:nth-child(even) {
+        background-color: #f8fafc;
+    }
+
+    .films-table tbody tr:hover {
+        background-color: #eef2f7;
+        transition: background-color 0.2s ease;
+    }
+
+    .films-table tbody tr:last-child td {
+        border-bottom: none;
+    }
+
+    /* 5. Personalizar las columnas */
+    .films-table .cell-title {
+        order: initial;
+        font-weight: 700;
+        color: #0f172a;
+        min-width: 150px;
+    }
+
+    .films-table .cell-year,
+    .films-table .cell-genre {
+        order: initial;
+    }
+
+    .films-table .cell-plot {
+        order: initial;
+        min-width: 250px;
+        flex-direction: initial;
+        gap: normal;
+        margin-top: 0;
+        line-height: 1.5;
+    }
+
+    .films-table .cell-poster {
+        order: initial;
+        justify-content: initial;
+        padding-bottom: 12px;
+        border-bottom: none;
+        margin-bottom: 0;
+    }
+
+    .films-table .cell-poster img {
+        display: block;
+        width: 65px;
+        height: auto;
+        max-height: 100px;
+        object-fit: contain;
+        margin: 0 auto;
+    }
+
+    .films-table .cell-edits {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+}
